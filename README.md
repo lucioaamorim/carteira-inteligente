@@ -1,4 +1,4 @@
-<h1>Projeto Alura Food com Docker</h1>
+<h1>Projeto Carteira Inteligente</h1>
 
 <h2>🔖 Sobre</h2>
 <h3>Projeto do Curso de Arquitetura Limpa com Java, Módulos e Spring Boot, ministrado pelo Daniel Santos</h3>
