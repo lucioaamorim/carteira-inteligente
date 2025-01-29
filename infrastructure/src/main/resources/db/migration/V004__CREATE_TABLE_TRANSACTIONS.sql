@@ -1,0 +1,12 @@
+CREATE TABLE Transactions(
+    Id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    FromWalletId BIGINT NOT NULL,
+    ToWalletId BIGINT NOT NULL,
+    TransactionValue DECIMAL(10,2) NOT NULL,
+    Status VARCHAR(30) NOT NULL,
+    CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UpdateAt  DATETIME,
+
+    FOREIGN KEY (FromWalletId) REFERENCES Wallets(Id),
+    FOREIGN KEY (ToWalletId) REFERENCES Wallets(Id)
+);
