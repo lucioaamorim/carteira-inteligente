@@ -4,5 +4,5 @@ import br.com.arquiteturalimpa.core.domain.TransactionPin;
 
 public interface TransactionPinValidateGateway {
 
-    public  boolean validate(TransactionPin transactionPin);
+    public  boolean validate(TransactionPin transactionPin, String pin);
 }

@@ -5,5 +5,5 @@ import br.com.arquiteturalimpa.core.exception.PinException;
 
 public interface TransactionPinValidateUseCase {
 
-    Boolean validate(TransactionPin transactionPin) throws PinException;
+    Boolean validate(TransactionPin transactionPin, String pin) throws PinException;
 }

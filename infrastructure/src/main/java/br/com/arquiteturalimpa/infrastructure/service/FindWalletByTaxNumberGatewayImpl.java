@@ -4,7 +4,9 @@ import br.com.arquiteturalimpa.application.gateway.FindWalletByTaxNumberGateway;
 import br.com.arquiteturalimpa.core.domain.Wallet;
 import br.com.arquiteturalimpa.infrastructure.mapper.WalletMapper;
 import br.com.arquiteturalimpa.infrastructure.repository.WalletEntityRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FindWalletByTaxNumberGatewayImpl implements FindWalletByTaxNumberGateway {
 
     private final WalletEntityRepository walletEntityRepository;

@@ -2,9 +2,12 @@ package br.com.arquiteturalimpa.application.usecaseimpl;
 
 import br.com.arquiteturalimpa.application.gateway.CreateTransactionGateway;
 import br.com.arquiteturalimpa.core.domain.Transaction;
+import br.com.arquiteturalimpa.core.domain.Wallet;
 import br.com.arquiteturalimpa.core.exception.TransferException;
 import br.com.arquiteturalimpa.core.exception.enums.ErrorCodeEnum;
 import br.com.arquiteturalimpa.usecase.CreateTransactionUseCase;
+
+import java.math.BigDecimal;
 
 public class CreateTransactionUseCaseImpl implements CreateTransactionUseCase {
 
@@ -15,7 +18,8 @@ public class CreateTransactionUseCaseImpl implements CreateTransactionUseCase {
     }
 
     @Override
-    public Transaction create(Transaction transaction) throws TransferException {
+    public Transaction create(Wallet to, Wallet from, BigDecimal value) throws TransferException {
+        var transaction = new Transaction(to, from, value);
         var transationSaved = createTransactionGateway.create(transaction);
 
         if(transationSaved == null){

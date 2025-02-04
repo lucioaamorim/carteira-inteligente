@@ -1,9 +1,8 @@
-package br.com.arquiteturalimpa.infrastructure.mapp;
+package br.com.arquiteturalimpa.infrastructure.mapper;
 
 import br.com.arquiteturalimpa.core.domain.Transaction;
 import br.com.arquiteturalimpa.core.domain.enums.TransactionStatusEnum;
 import br.com.arquiteturalimpa.infrastructure.entity.TransactionEntity;
-import br.com.arquiteturalimpa.infrastructure.mapper.WalletMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +16,7 @@ public class TransactionMapper {
 
     public TransactionEntity toTransactionEntity(Transaction transaction) {
         return new TransactionEntity(
+                transaction.getId(),
                 walletMapper.toWalleteEntity(transaction.getFromWallet()),
                 walletMapper.toWalleteEntity(transaction.getToWallet()),
                 transaction.getValue(),
@@ -27,6 +27,7 @@ public class TransactionMapper {
     }
 
     public TransactionEntity CreateTransactionEntity(Transaction transaction) {
+        //chegou como transação criada
         return new TransactionEntity(
                 walletMapper.toWalleteEntity(transaction.getFromWallet()),
                 walletMapper.toWalleteEntity(transaction.getToWallet()),
@@ -46,7 +47,6 @@ public class TransactionMapper {
                 transactionEntity.getStatus(),
                 transactionEntity.getCreatedAt(),
                 transactionEntity.getUpadateAt()
-
         );
     }
 }

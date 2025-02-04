@@ -1,4 +1,6 @@
 package br.com.arquiteturalimpa.infrastructure.dto.request;
 
-public class TransferRequest {
+import java.math.BigDecimal;
+
+public record TransferRequest(String fromTaxNumber, String toTaxNumber, BigDecimal value, String pin){
 }

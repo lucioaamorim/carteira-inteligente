@@ -1,5 +1,6 @@
 package br.com.arquiteturalimpa.infrastructure.entity;
 
+import br.com.arquiteturalimpa.core.domain.Wallet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,4 +47,5 @@ public class WalletEntity {
         this.createdAt = createdAt;
         this.upadateAt = upadateAt;
     }
+
 }

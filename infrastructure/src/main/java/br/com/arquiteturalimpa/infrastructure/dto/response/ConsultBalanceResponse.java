@@ -1,4 +1,6 @@
 package br.com.arquiteturalimpa.infrastructure.dto.response;
 
-public class ConsultBalanceResponse {
+import java.math.BigDecimal;
+
+public record ConsultBalanceResponse (BigDecimal balance) {
 }

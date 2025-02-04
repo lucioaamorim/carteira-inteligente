@@ -9,21 +9,23 @@ import br.com.arquiteturalimpa.usecase.UpdateTransactionPinUseCase;
 
 public class TransactionPinValidateUseCaseImpl implements TransactionPinValidateUseCase {
 
-    final TransactionPinValidateGateway transactionPinValidateGateway;
-    private UpdateTransactionPinUseCase updateTransactionPinUseCase;
+    private final TransactionPinValidateGateway transactionPinValidateGateway;
+    private final UpdateTransactionPinUseCase updateTransactionPinUseCase;
 
-    public TransactionPinValidateUseCaseImpl(TransactionPinValidateGateway transactionPinValidateGateway) {
+    public TransactionPinValidateUseCaseImpl(TransactionPinValidateGateway transactionPinValidateGateway,
+                                             UpdateTransactionPinUseCase updateTransactionPinUseCase) {
         this.transactionPinValidateGateway = transactionPinValidateGateway;
+        this.updateTransactionPinUseCase = updateTransactionPinUseCase;
     }
 
     @Override
-    public Boolean validate(TransactionPin transactionPin) throws PinException {
+    public Boolean validate(TransactionPin transactionPin, String pin) throws PinException {
 
         if(transactionPin.getBlocked()){
             throw new PinException(ErrorCodeEnum.PIN0001.getMessage(), ErrorCodeEnum.PIN0001.getCode());
         }
 
-        if(!transactionPinValidateGateway.validate(transactionPin)){
+        if(!transactionPinValidateGateway.validate(transactionPin, pin)){
             transactionPin.setAttempt();
             var transactionPinUpdate = updateTransactionPinUseCase.update(transactionPin);
             throw new PinException(ErrorCodeEnum.PIN0002.getMessage() +
@@ -32,7 +34,8 @@ public class TransactionPinValidateUseCaseImpl implements TransactionPinValidate
 
         if(transactionPin.getAttempt() < 3){
             transactionPin.restaureAttempt();
-        }   updateTransactionPinUseCase.update(transactionPin);
+        }
+        updateTransactionPinUseCase.update(transactionPin);
 
         return true;
     }

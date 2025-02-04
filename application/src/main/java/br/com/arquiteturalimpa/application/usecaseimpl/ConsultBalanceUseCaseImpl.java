@@ -1,22 +1,22 @@
 package br.com.arquiteturalimpa.application.usecaseimpl;
 
-import br.com.arquiteturalimpa.application.gateway.ConsultBalanceGateway;
-import br.com.arquiteturalimpa.core.domain.Wallet;
 import br.com.arquiteturalimpa.usecase.ConsultBalanceUseCase;
+import br.com.arquiteturalimpa.usecase.FindWalletByTaxNumberUserCase;
 
 import java.math.BigDecimal;
 
 public class ConsultBalanceUseCaseImpl implements ConsultBalanceUseCase {
 
-    final private ConsultBalanceGateway consultBalanceGateway;
+    final private FindWalletByTaxNumberUserCase findWalletByTaxNumberUserCase;
 
-    public ConsultBalanceUseCaseImpl(ConsultBalanceGateway consultBalanceGateway) {
-        this.consultBalanceGateway = consultBalanceGateway;
+    public ConsultBalanceUseCaseImpl(FindWalletByTaxNumberUserCase findWalletByTaxNumberUserCase) {
+        this.findWalletByTaxNumberUserCase = findWalletByTaxNumberUserCase;
     }
 
 
     @Override
-    public BigDecimal consult(Wallet wallet) {
-        return consultBalanceGateway.Consult(wallet);
+    public BigDecimal consult(String taxNumber) throws Exception {
+        var wallet = findWalletByTaxNumberUserCase.findByTaxNumber(taxNumber);
+        return wallet.getBalance();
     }
 }
